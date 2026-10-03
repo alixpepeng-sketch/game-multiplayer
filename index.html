@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFB6E6">
+<title>ALYZ MULTIPLAYER</title>
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{"imports":{
+  "firebase/app":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+  "firebase/auth":"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
+  "firebase/database":"https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"
+}}
+</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+
+<header class="top glass">
+  <div class="logo">ALYZ MULTIPLAYER</div>
+  <div id="me-pill" class="pill hidden"></div>
+</header>
+
+<main>
+  <section id="auth-screen" class="screen active">
+    <div class="card glass pop center">
+      <div class="logo logo-xl">ALYZ MULTIPLAYER</div>
+      <p class="sub">Susun huruf, jawab lebih cepat, kalahkan lawanmu secara realtime.</p>
+      <button id="btn-google" class="btn primary wide">Masuk dengan Google</button>
+    </div>
+  </section>
+
+  <section id="username-screen" class="screen">
+    <div class="card glass pop center">
+      <div class="logo logo-md">ALYZ MULTIPLAYER</div>
+      <h2>Pilih username</h2>
+      <p class="sub">3 sampai 12 karakter. Nama ini tampil di lobby dan hasil pertandingan.</p>
+      <input id="username-input" class="input" maxlength="12" autocomplete="off" placeholder="Username kamu">
+      <p id="username-err" class="err"></p>
+      <button id="btn-username" class="btn primary wide">Simpan username</button>
+    </div>
+  </section>
+
+  <section id="lobby-screen" class="screen">
+    <div class="card glass pop center">
+      <div class="logo logo-xl">ALYZ MULTIPLAYER</div>
+      <p class="sub" id="lobby-hello"></p>
+      <button id="btn-create" class="btn primary wide">Create Room</button>
+      <div class="divider"><span>atau gabung</span></div>
+      <div class="join-row">
+        <input id="join-input" class="input code" maxlength="12" autocomplete="off" placeholder="ALYZ-ABCDEF">
+        <button id="btn-join" class="btn">Join Room</button>
+      </div>
+      <p id="lobby-err" class="err"></p>
+      <button id="btn-logout" class="btn ghost">Keluar akun</button>
+    </div>
+  </section>
+
+  <section id="game-screen" class="screen">
+    <div class="game-wrap">
+      <div class="game-bar glass">
+        <div id="players" class="players"></div>
+        <button id="room-code" class="chip" title="Salin kode room"></button>
+      </div>
+
+      <div id="waiting" class="card glass pop center hidden">
+        <div class="logo logo-md">ALYZ MULTIPLAYER</div>
+        <h2>Menunggu lawan</h2>
+        <p class="sub">Bagikan kode room ini ke temanmu.</p>
+        <div id="wait-code" class="big-code"></div>
+        <div class="loader"><i></i><i></i><i></i></div>
+      </div>
+
+      <div id="play" class="hidden">
+        <div class="timer"><i id="timer-fill"></i></div>
+        <div class="card glass pop question">
+          <div class="q-meta"><span id="q-count"></span><span id="turn-label" class="turn"></span></div>
+          <h2 id="q-text"></h2>
+        </div>
+        <div id="board" class="board"></div>
+        <div id="letters" class="letters"></div>
+      </div>
+      <button id="btn-leave" class="btn ghost leave">Keluar room</button>
+    </div>
+  </section>
+</main>
+
+<div id="win-modal" class="modal">
+  <div class="modal-card glass win">
+    <div class="logo logo-md">ALYZ MULTIPLAYER</div>
+    <h1>You Win</h1>
+    <p id="win-text" class="sub"></p>
+    <div id="win-score" class="big-score">0</div>
+    <p class="sub">poin kamu</p>
+    <div class="row">
+      <button id="win-again" class="btn primary">Play Again</button>
+      <button id="win-lobby" class="btn">Back to Lobby</button>
+    </div>
+  </div>
+</div>
+
+<div id="lose-modal" class="modal">
+  <div class="modal-card glass lose">
+    <div class="logo logo-md">ALYZ MULTIPLAYER</div>
+    <h1>Game Over</h1>
+    <p id="lose-text" class="sub"></p>
+    <div id="lose-score" class="big-score">0</div>
+    <p class="sub">poin kamu</p>
+    <div class="row">
+      <button id="lose-again" class="btn primary">Try Again</button>
+      <button id="lose-lobby" class="btn">Back to Lobby</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="fx"></canvas>
+<div id="toast" class="toast glass"></div>
+
+<script type="module" src="js/firebase-config.js"></script>
+<script type="module" src="js/questions.js"></script>
+<script type="module" src="js/game.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
