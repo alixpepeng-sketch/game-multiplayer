@@ -15,13 +15,13 @@ import { getAuth } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
 
 export const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "000000000000",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAyKw5JZ-VlTs8wK40E2Z6pJH_3wCSF0U8",
+  authDomain: "web-store-12856.firebaseapp.com",
+  databaseURL: "https://web-store-12856-default-rtdb.firebaseio.com",
+  projectId: "toko-web-12856",
+  storageBucket: "web-store-12856.firebasestorage.app",
+  messagingSenderId: "72980085852",
+  appId: "1:72980085852:web:9f30a318b821adacc83a9"
 };
 
 export const ROOM_PREFIX = "ALYZ-";
@@ -30,3 +30,4 @@ export const isConfigured = !firebaseConfig.apiKey.startsWith("YOUR_");
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getDatabase(app);
+  
